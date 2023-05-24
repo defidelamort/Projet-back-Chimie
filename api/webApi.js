@@ -17,6 +17,31 @@ let webApi={
             if (data.key=="Nom"){
                 res.json(buisness.getAllProduitInCie());
             }
+            else if(data.key=="Armor"){
+                res.json(buisness.getAllArmor());
+            }
+            else if(data.key=="id"){
+                res.json(buisness.getOneProduit(data.data));
+            }
+        });
+
+        app.post(REQUEST_URL, (req, res) => {
+            let is_added;
+            let data=req.body;
+
+            if(data.key=="Armor"){
+                is_added = buisness.AddArmor(data.data);
+            }
+            else if(data.key=="Produit"){
+                is_added = buisness.AddProduit(data.data);
+            }
+
+            // Send adequate responses
+            if (is_added) {
+                res.sendStatus(200);
+            } else {
+                res.sendStatus(400);
+            }
         });
 
         app.listen(port,()=>{
