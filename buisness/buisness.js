@@ -92,6 +92,22 @@ let buisness={
         return final;
     },
 
+    getAllTypeProduit:()=>{
+        let TypeProduit=data.getTypeProduit();
+        let final=[];
+
+        for(let type of TypeProduit){
+            final.push({
+                id:type.idType,
+                Nom:type.Nom,
+                Image:type.Image,
+                Pictogramme:type.Pictogramme
+            });
+        }
+
+        return final;
+    },
+
     getOneProduit:(id)=>{
         let ProduitInCie =data.getProduitInCie();
         let ListArmor=data.getArmor();
@@ -112,6 +128,8 @@ let buisness={
 
 
     },
+
+    
 
     AddArmor:dataArmor=>{
         if (!goodData(dataArmor,check_Armor)){

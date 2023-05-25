@@ -2,7 +2,7 @@ const express=require("express");
 const cors=require("cors");
 const buisness=require("../buisness/buisness");
 
-const REQUEST_URL="/test";
+const REQUEST_URL="/products";
 
 let webApi={
     Start:port=>{
@@ -21,11 +21,13 @@ let webApi={
             };
             console.log(data);
             if (data.key=="Nom"){
-                console.log("Ok");
                 res.json(buisness.getAllProduitInCie());
             }
             else if(data.key=="Armor"){
                 res.json(buisness.getAllArmor());
+            }
+            else if (data.key=="Type"){
+                res.json(buisness.getAllTypeProduit());
             }
             else if(data.key=="id"){
                 res.json(buisness.getOneProduit(data.data));
