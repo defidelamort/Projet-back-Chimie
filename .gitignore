@@ -129,5 +129,5 @@ dist
 .yarn/install-state.gz
 .pnp.*
 
-.data/aromor.json
-.data/produitCie.json
+armor.json
+produitInCie.json
