@@ -116,15 +116,17 @@ let buisness={
         let Produit = ProduitInCie.find(val=>val.id==id);
         let Armor=ListArmor.find(val=>val.idArmor==Produit.idArmor);
         let Type=TypeProduit.find(val=>val.idType==Produit.idType);
-        return {
+
+        let res={
             Nom:Type.Nom,
-            Image:Type.ImageP,
+            Image:Type.Image,
             DatePeremption:Produit.DatePeremption,
-            LieuStockage:Armor.LieuStockage,
+            Localisation:Armor.Localisation,
             LienFichedeSecurite:Type.LienFichedeSecurite,
             id:Produit.id,
             Pictogramme:Type.Pictogramme
         };
+        return res;
 
 
     },
