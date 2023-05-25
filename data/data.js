@@ -83,6 +83,23 @@ let dataManagement={
         }
         
         return true;
+    },
+
+    modifyPictogramme:(idArmor,Pictogramme)=>{
+        let rawdata=fs.readFileSync(fileArmor);  
+        let ListArmor=JSON.parse(rawdata);
+
+        let indexArmor=ListArmor.findIndex(val=>val.idArmor==idArmor);
+
+        ListArmor[indexArmor].Pictogramme=Pictogramme;
+
+        try{
+            fs.writeFileSync(fileArmor,JSON.stringify(ListArmor));
+        } catch(error){
+            console.error(error);
+            return false;
+        }
+        return true;
     }
 };
 

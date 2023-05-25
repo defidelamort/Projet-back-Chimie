@@ -33,22 +33,26 @@ let webApi={
         });
 
         app.post(REQUEST_URL, (req, res) => {
-            let is_added;
+            
             let data=req.body;
 
             if(data.key=="Armor"){
-                is_added = buisness.AddArmor(data.data);
+                let is_added = buisness.AddArmor(data.data);
+                if (is_added) {
+                    res.sendStatus(200);
+                } else {
+                    res.sendStatus(400);
+                }
             }
             else if(data.key=="Produit"){
-                is_added = buisness.AddProduit(data.data);
+                let Armor = buisness.AddProduit(data.data);
+                if (Armor !== undefined) {
+                    res.status(200).send(Armor.toString());
+                } else {
+                    res.status(400).send("Il n'y a pas asser d'armoire");
+                }
             }
-
-            // Send adequate responses
-            if (is_added) {
-                res.sendStatus(200);
-            } else {
-                res.sendStatus(400);
-            }
+            
         });
 
         app.listen(port,()=>{

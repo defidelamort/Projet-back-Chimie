@@ -1,3 +1,4 @@
+const dataManagement = require("../data/data");
 const data=require("../data/data");
 const check_Armor={
     NomArmoire: /^[A-Za-z0-9-_]+$/,
@@ -32,6 +33,28 @@ const arrayEquals=(a, b)=>{
         Array.isArray(b) &&
         a.length === b.length &&
         a.every((val, index) => val === b[index]);
+};
+
+const findArmor=(dataProduct)=>{
+    let ListArmor=data.getArmor();
+    let TypeProduit=data.getTypeProduit();
+
+    let Type=TypeProduit.find(val=>val.idType==dataProduct.idType);
+    let Armor=ListArmor.find(val=>(val.Pictogramme==Type.Pictogramme || val.Pictogramme==0 ));
+    
+    if(Armor===undefined){
+        return Armor;
+    }
+
+    else {
+        if (Armor.Pictogramme==0){
+            dataManagement.modifyPictogramme(Armor.idArmor,Type.Pictogramme);
+        }
+        return Armor.idArmor;
+    }
+
+    
+    
 };
 
 
@@ -96,6 +119,7 @@ let buisness={
         }
         else
         {
+            dataArmor.Pictogramme=0;
             return data.AddArmor(dataArmor);
         }
     },
@@ -106,7 +130,13 @@ let buisness={
         }
         else
         {
-            return data.AddProduit(dataProduit);
+            dataProduit.idArmor=findArmor(dataProduit);
+            if(dataProduit.idArmor!==undefined && data.AddProduit(dataProduit)){
+                return dataProduit.idArmor;
+            }
+            else{
+                return undefined;
+            }
         }
     }
 };

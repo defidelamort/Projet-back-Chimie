@@ -1,1 +1,1 @@
-[{"idType":"0","Nom":"ProduitA","Image":"/image/ProduitA.jpg","LienFichedeSecurite":"google.com","Pictogramme":"25"}]
+[{"idType":"0","Nom":"ProduitA","Image":"/image/ProduitA.jpg","LienFichedeSecurite":"google.com","Pictogramme":2},{"idType":1,"Nom":"ProduitB","Image":"/image/ProduitA.jpg","LienFichedeSecurite":"google.com","Pictogramme":3},{"idType":2,"Nom":"ProduitC","Image":"/image/ProduitA.jpg","LienFichedeSecurite":"google.com","Pictogramme":3},{"idType":3,"Nom":"ProduitD","Image":"/image/ProduitA.jpg","LienFichedeSecurite":"google.com","Pictogramme":8}]
