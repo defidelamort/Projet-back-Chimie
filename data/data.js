@@ -56,7 +56,7 @@ let dataManagement={
         ListArmor.push(dataArmor);
 
         try{
-            fs.writeFileSync(fileArmor,JSON.stringify(dataArmor));
+            fs.writeFileSync(fileArmor,JSON.stringify(ListArmor));
         } catch(error){
             console.error(error);
             return false;
@@ -66,7 +66,7 @@ let dataManagement={
     },
 
     AddProduit:dataProduit=>{
-        let rawdata = fs.readFileSync(fileProduit);
+        let rawdata = fs.readFileSync(fileProduitInCie);
         let ListProduit=JSON.parse(rawdata);
 
         let lastid=lastElement(ListProduit,"id");
@@ -76,7 +76,7 @@ let dataManagement={
         ListProduit.push(dataProduit);
 
         try{
-            fs.writeFileSync(fileProduit,JSON.stringify(dataProduit));
+            fs.writeFileSync(fileProduitInCie,JSON.stringify(ListProduit));
         } catch(error){
             console.error(error);
             return false;

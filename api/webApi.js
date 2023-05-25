@@ -10,11 +10,18 @@ let webApi={
 
         app.use(express.json());
 
-        app.use(cors({ origin:"*" }));
+        app.use(cors({ 
+            origin:"*" 
+        }));
 
         app.get(REQUEST_URL,(req,res)=>{
-            let data=req.body;
+            let data={
+                key:req.query.key,
+                data:req.query.data
+            };
+            console.log(data);
             if (data.key=="Nom"){
+                console.log("Ok");
                 res.json(buisness.getAllProduitInCie());
             }
             else if(data.key=="Armor"){

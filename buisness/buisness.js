@@ -1,12 +1,11 @@
 const data=require("../data/data");
 const check_Armor={
-    NomArmoire: /^[A-Za-z0-9]+$/,
-    Localisation: / /,
-    Image: / /,
+    NomArmoire: /^[A-Za-z0-9-_]+$/,
+    Localisation: /^[A-Za-z0-9-_]+$/,
 };
 const check_Produit={
     idType: /^[0-9]+$/,
-    DatePeremption: / /
+    DatePeremption: /^[0-9]{4}-[0-9]{2}-[0-9]{2}$/
 };
 
 const goodData=(data,check)=>{
@@ -43,7 +42,7 @@ let buisness={
         let final=[];
 
         for(let produit of ProduitInCie){
-            let type=TypeProduit.find(val=>val.id==produit.idType);
+            let type=TypeProduit.find(val=>val.idType==produit.idType);
             final.push({
                 id:produit.id,
                 Nom:type.Nom,
@@ -63,8 +62,7 @@ let buisness={
             final.push({
                 NomArmoire:Armor.NomArmoire,
                 Localisation:Armor.Localisation,
-                Image:Armor.Image,
-                idArmoire:Armor.id
+                idArmoire:Armor.idArmor
             });
         }
 
@@ -73,16 +71,15 @@ let buisness={
 
     getOneProduit:(id)=>{
         let ProduitInCie =data.getProduitInCie();
-        let ListArmor=data.getAllArmor();
+        let ListArmor=data.getArmor();
         let TypeProduit=data.getTypeProduit();
 
         let Produit = ProduitInCie.find(val=>val.id==id);
-        let Armor=ListArmor.find(val=>val.id==Produit.idArmor);
-        let Type=TypeProduit.find(val=>val.id==Produit.idType);
-
+        let Armor=ListArmor.find(val=>val.idArmor==Produit.idArmor);
+        let Type=TypeProduit.find(val=>val.idType==Produit.idType);
         return {
             Nom:Type.Nom,
-            Image:Type.Image,
+            Image:Type.ImageP,
             DatePeremption:Produit.DatePeremption,
             LieuStockage:Armor.LieuStockage,
             LienFichedeSecurite:Type.LienFichedeSecurite,
