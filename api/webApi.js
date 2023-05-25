@@ -32,6 +32,9 @@ let webApi={
             else if(data.key=="id"){
                 res.json(buisness.getOneProduit(data.data));
             }
+            else if(data.key=="ProdArmor"){
+                res.json(buisness.getProduitInCieInArmor(data.data));
+            }
         });
 
         app.post(REQUEST_URL, (req, res) => {

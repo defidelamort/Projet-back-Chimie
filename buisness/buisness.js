@@ -131,7 +131,25 @@ let buisness={
 
     },
 
-    
+    getProduitInCieInArmor:idArmor=>{
+        let ProduitInCie=data.getProduitInCie();
+        let TypeProduit=data.getTypeProduit();
+        let final=[];
+
+        for(let produit of ProduitInCie){
+            if(idArmor==produit.idArmor){
+                let type=TypeProduit.find(val=>val.idType==produit.idType);
+                final.push({
+                    id:produit.id,
+                    Nom:type.Nom,
+                    Image:type.Image,
+                    Pictogramme:type.Pictogramme
+                });
+            }
+        }
+
+        return final;
+    },
 
     AddArmor:dataArmor=>{
         if (!goodData(dataArmor,check_Armor)){
